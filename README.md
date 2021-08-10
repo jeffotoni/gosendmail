@@ -5,6 +5,7 @@ With it we can send emails With copy, with blind copy and attachments.
 The body is plain text, we're still going to make a version to accept HTML, at the moment only text/plain in the Body.
 The attachment must pass the complete path so that the package can open the file.
 There are 4 environment variables to be configured, they are:
+
 	- EMAIL_HOST
 	- EMAIL_USERNAME
 	- EMAIL_PASSWORD
