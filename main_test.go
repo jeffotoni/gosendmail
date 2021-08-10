@@ -162,11 +162,11 @@ func TestMessage_SendEmail(t *testing.T) {
 		want   error
 	}{
 		{"sendemail_", fields{
-			To:          []string{"jeff.otoni@gmail.com", "jeff.otoni@s3wf.com.br"},
-			CC:          []string{"jeffotoni@gmail.com"},
-			BCC:         []string{"jefferson.lima@engdb.com.br"},
+			To:          []string{"<your-to@gmail.com>", "<your-to2@gmail.com>"},
+			CC:          []string{"<your-cc@gmail.com>"},
+			BCC:         []string{"<your-bcc@gmail.com>"},
 			Subject:     "Test email pkg gosendmail",
-			Body:        "Este teste é somente plain/text e não usa ainda HTML",
+			Body:        "This is email only plain/text and not use HTML",
 			Attachments: "./websocket.png",
 		}, nil},
 	}
