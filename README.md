@@ -22,7 +22,8 @@ import "log"
 func main() {
  	email := gse.New()
  	if email == nil {
- 		log.Println("Error New() check the required fields: EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
+ 		log.Println("Error New() check the required fields: 
+		 EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
  		return
  	}
  	m := gse.NewMessage("Title here", "Body message here.")
