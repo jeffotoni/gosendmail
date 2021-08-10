@@ -39,3 +39,10 @@ func main() {
 }
 
 ```
+
+To run the code above:
+```bash
+$ go mod init <your-pkg>
+$ go mod tidy
+$ go run main
+```
