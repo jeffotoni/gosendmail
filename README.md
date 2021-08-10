@@ -15,8 +15,8 @@ Below is an example of how you might use pkg.
 ```go
 package main
 
-import gse "gosendemail" 
-import gse "log" 
+import gse "gosendmail" 
+import "log" 
 
 
 func main() {

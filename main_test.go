@@ -1,4 +1,4 @@
-package gosendemail
+package gosendmail
 
 import (
 	"net/smtp"
