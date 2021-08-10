@@ -25,11 +25,12 @@ func main() {
  		log.Println("Error New() check the required fields: EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
  		return
  	}
- 	m := gse.NewMessage("", "Body message.")
- 	m.To = []string{"to@gmail.com"}
- 	m.CC = []string{"copy1@gmail.com", "copy2@gmail.com"}
- 	m.BCC = []string{"bc@gmail.com"}
- 	m.AttachFile("/path/to/file")
+ 	m := gse.NewMessage("Title here", "Body message here.")
+ 	m.To = []string{"<to-email>@gmail.com"}
+ 	m.CC = []string{"<copy1-email>@gmail.com", "<copy2-email>@gmail.com"}
+ 	m.BCC = []string{"<bc-email>@gmail.com"}
+ 	m.AttachFile("/path/to/file1.pdf")
+ 	m.AttachFile("/path/to/file2.pdf")
  	if email.Send(m) != nil {
  		log.Println("Error when sending:", err.Error())
  		return
