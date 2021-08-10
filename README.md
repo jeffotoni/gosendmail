@@ -16,7 +16,7 @@ Below is an example of how you might use pkg.
 package main
 
 import gse "gosendemail" 
-import gse "log" 
+import "log" 
 
 
 func main() {
