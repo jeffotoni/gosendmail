@@ -12,11 +12,10 @@ There are 4 environment variables to be configured, they are:
 	- EMAIL_PORT
 
 Below is an example of how you might use pkg.
-
 ```go
 package main
 
-import gse "gosendmail" 
+import gse "github.com/jotonilima/gosendmail"
 import "log" 
 
 
@@ -43,6 +42,10 @@ func main() {
 
 To run the code above:
 ```bash
+$ export EMAIL_HOST="smtp.<YOUR-SERVER>.com"
+$ export EMAIL_USERNAME="<USER>"
+$ export EMAIL_PASSWORD="<PASSWORD>"
+$ export EMAIL_PORT="587"
 $ go mod init <your-pkg>
 $ go mod tidy
 $ go run main
