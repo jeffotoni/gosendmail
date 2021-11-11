@@ -56,9 +56,12 @@ func (s *Sender) Send(m *Message) error {
 		}
 		tlsconfig := &tls.Config{
 			InsecureSkipVerify: true,
-			ServerName:         host,
+			//ServerName:         host,
 		}
-		c.StartTLS(tlsconfig)
+		if err := c.StartTLS(tlsconfig); err != nil {
+			return err
+		}
+		println("configurando TLS ...")
 	}
 
 	return smtp.SendMail(fmt.Sprintf("%s:%s", host, portNumber), s.auth, username, m.To, m.ToBytes())
