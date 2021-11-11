@@ -10,6 +10,7 @@ There are 4 environment variables to be configured, they are:
 	- EMAIL_USERNAME
 	- EMAIL_PASSWORD
 	- EMAIL_PORT
+	- EMAIL_INSECURE
 
 Below is an example of how you might use pkg.
 ```go
@@ -20,23 +21,23 @@ import "log"
 
 
 func main() {
- 	email := gse.New()
- 	if email == nil {
- 		log.Println("Error New() check the required fields: 
-		 EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
- 		return
- 	}
- 	m := gse.NewMessage("Title here", "Body message here.")
- 	m.To = []string{"<to-email>@gmail.com"}
- 	m.CC = []string{"<copy1-email>@gmail.com", "<copy2-email>@gmail.com"}
- 	m.BCC = []string{"<bc-email>@gmail.com"}
- 	m.AttachFile("/path/to/file1.pdf")
- 	m.AttachFile("/path/to/file2.pdf")
- 	if email.Send(m) != nil {
- 		log.Println("Error when sending:", err.Error())
- 		return
- 	}
- 	log.Println("Sent with success")
+ 	email := New()
+	if email == nil {
+		log.Println("Error New() check the required fields: EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
+		return
+	}
+	m := NewMessage("Title here", "Body message here.")
+	m.To = []string{"<your-email>@gmail.com"}
+	m.CC = []string{"<copy1-email>@gmail.com", "<copy2-email>@gmail.com"}
+	m.BCC = []string{"<bc-email>@gmail.com"}
+	m.AttachFile("/path/to/file1.pdf")
+	m.AttachFile("/path/to/file2.pdf")
+	err := email.Send(m)
+	if err != nil {
+		log.Println("Error when sending:", err.Error())
+		return
+	}
+	log.Println("Sent with success")
 }
 
 ```

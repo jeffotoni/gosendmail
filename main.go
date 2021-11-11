@@ -2,7 +2,9 @@ package gosendmail
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/base64"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"mime/multipart"
@@ -14,10 +16,11 @@ import (
 )
 
 var (
-	host       = os.Getenv("EMAIL_HOST")
-	username   = os.Getenv("EMAIL_USERNAME")
-	password   = os.Getenv("EMAIL_PASSWORD")
-	portNumber = os.Getenv("EMAIL_PORT")
+	host         = os.Getenv("EMAIL_HOST")
+	username     = os.Getenv("EMAIL_USERNAME")
+	password     = os.Getenv("EMAIL_PASSWORD")
+	portNumber   = os.Getenv("EMAIL_PORT")
+	insecureSkip = os.Getenv("EMAIL_INSECURE")
 )
 
 type Sender struct {
@@ -46,6 +49,18 @@ func New() *Sender {
 }
 
 func (s *Sender) Send(m *Message) error {
+	if insecureSkip == "true" {
+		c, err := smtp.Dial(host + ":" + portNumber)
+		if err != nil {
+			return errors.New("error Dial:" + err.Error())
+		}
+		tlsconfig := &tls.Config{
+			InsecureSkipVerify: true,
+			ServerName:         host,
+		}
+		c.StartTLS(tlsconfig)
+	}
+
 	return smtp.SendMail(fmt.Sprintf("%s:%s", host, portNumber), s.auth, username, m.To, m.ToBytes())
 }
 
