@@ -11,6 +11,7 @@ There are 4 environment variables to be configured, they are:
 	- EMAIL_PASSWORD
 	- EMAIL_PORT
 	- EMAIL_INSECURE
+	- EMAIL_FROM
 
 Below is an example of how you might use pkg.
 ```go

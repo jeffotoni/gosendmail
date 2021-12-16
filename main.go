@@ -21,6 +21,7 @@ var (
 	password     = os.Getenv("EMAIL_PASSWORD")
 	portNumber   = os.Getenv("EMAIL_PORT")
 	insecureSkip = os.Getenv("EMAIL_INSECURE")
+	from         = os.Getenv("EMAIL_FROM")
 )
 
 type Sender struct {
@@ -64,7 +65,10 @@ func (s *Sender) Send(m *Message) error {
 		println("configurando TLS ...")
 	}
 
-	return smtp.SendMail(fmt.Sprintf("%s:%s", host, portNumber), s.auth, username, m.To, m.ToBytes())
+	if len(from) == 0 {
+		from = username
+	}
+	return smtp.SendMail(fmt.Sprintf("%s:%s", host, portNumber), s.auth, from, m.To, m.ToBytes())
 }
 
 func NewMessage(s, b string) *Message {
