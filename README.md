@@ -22,12 +22,12 @@ import "log"
 
 
 func main() {
- 	email := New()
+ 	email := gse.New()
 	if email == nil {
 		log.Println("Error New() check the required fields: EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
 		return
 	}
-	m := NewMessage("Title here", "Body message here.")
+	m := gse.NewMessage("Title here", "Body message here.")
 	m.To = []string{"<your-email>@gmail.com"}
 	m.CC = []string{"<copy1-email>@gmail.com", "<copy2-email>@gmail.com"}
 	m.BCC = []string{"<bc-email>@gmail.com"}
@@ -40,7 +40,6 @@ func main() {
 	}
 	log.Println("Sent with success")
 }
-
 ```
 
 To run the code above:
