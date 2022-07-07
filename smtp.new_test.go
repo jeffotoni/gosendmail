@@ -2,6 +2,7 @@ package gosendmail
 
 import (
 	"net/smtp"
+	"os"
 	"reflect"
 	"testing"
 )
@@ -142,6 +143,16 @@ func TestMessage_ToBytes(t *testing.T) {
 
 // go test -v -run ^TestMessage_SendEmail$
 func TestMessage_SendEmail(t *testing.T) {
+	os.Setenv("EMAIL_HOST", "smt.google.com")
+	os.Setenv("EMAIL_USERNAME", "gmail")
+	os.Setenv("EMAIL_PASSWORD", "pass")
+	os.Setenv("EMAIL_PORT", "587")
+
+	host = os.Getenv("EMAIL_HOST")
+	username = os.Getenv("EMAIL_USERNAME")
+	password = os.Getenv("EMAIL_PASSWORD")
+	port = os.Getenv("EMAIL_PORT")
+
 	sender := New()
 	if sender == nil {
 		t.Error("Error New() check the required fields: EMAIL_HOST,EMAiL_USERNAME,EMAIL_PASSWORD,EMAIL_PORT")
