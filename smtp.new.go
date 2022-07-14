@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"log"
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
@@ -88,7 +89,7 @@ func (m *Message) ToBytes() []byte {
 		// buf.WriteString("Content-Type: text/plain; charset=utf-8\n")
 	}
 
-	fmt.Println("body:", m.Body)
+	log.Println("body:", m.Body)
 	buf.WriteString(m.Body)
 	if withAttachments {
 		for k, v := range m.Attachments {
@@ -104,6 +105,6 @@ func (m *Message) ToBytes() []byte {
 		}
 		buf.WriteString("--")
 	}
-	fmt.Println(string(buf.Bytes()))
+	log.Println(string(buf.Bytes()))
 	return buf.Bytes()
 }
