@@ -58,6 +58,7 @@ func (m *Message) AttachFile(src string) error {
 	}
 
 	_, fileName := filepath.Split(src)
+	fmt.Println("fileName ", fileName)
 	m.Attachments[fileName] = b
 	return nil
 }
@@ -75,8 +76,8 @@ func (m *Message) ToBytes() []byte {
 		buf.WriteString(fmt.Sprintf("Bcc: %s\n", strings.Join(m.BCC, ",")))
 	}
 
-	//mimeHeaders := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
-	mimeHeaders := "MIME-Version: 1.0\n"
+	mimeHeaders := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"
+	//mimeHeaders := "MIME-Version: 1.0;\n"
 	buf.WriteString(mimeHeaders)
 	writer := multipart.NewWriter(buf)
 	boundary := writer.Boundary()
@@ -84,7 +85,7 @@ func (m *Message) ToBytes() []byte {
 		buf.WriteString(fmt.Sprintf("Content-Type: multipart/mixed; boundary=%s\n", boundary))
 		buf.WriteString(fmt.Sprintf("--%s\n", boundary))
 	} else {
-		buf.WriteString("Content-Type: text/plain; charset=utf-8\n")
+		// buf.WriteString("Content-Type: text/plain; charset=utf-8\n")
 	}
 
 	buf.WriteString(m.Body)
