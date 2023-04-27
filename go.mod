@@ -1,3 +1,3 @@
-module github.com/jeffotoni/gosendmail
+module github.com/jeffotoni/gobrz/gosendmail
 
-go 1.16
+go 1.20
